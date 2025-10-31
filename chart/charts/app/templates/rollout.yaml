@@ -31,8 +31,8 @@ spec:
             failureThreshold: 1
   strategy:
     blueGreen:
-      activeService: product-active
-      previewService: product-preview
+      activeService: app-active
+      previewService: app-preview
       autoPromotionEnabled: {{ .Values.rollout.strategy.autoPromotionEnabled }}
       autoPromotionSeconds: {{ .Values.rollout.strategy.autoPromotionSeconds }}
       scaleDownDelaySeconds: {{ .Values.rollout.strategy.scaleDownDelaySeconds }}
