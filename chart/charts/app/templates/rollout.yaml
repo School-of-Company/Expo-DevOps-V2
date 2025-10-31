@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: {{ .Values.rollout.name }}
+  namespace: {{ .Values.rollout.namespace }}
+  labels:
+    app.kubernetes.io/name: product
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: product
+  template:
+    metadata:
+      labels:
+        app: product
+    spec:
+      terminationGracePeriodSeconds: {{ .Values.rollout.terminationGracePeriodSeconds}}
+      containers:
+        - name: app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.service.targetPort }}
+            initialDelaySeconds: 1
+            periodSeconds: 1
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 1
+  strategy:
+    blueGreen:
+      activeService: product-active
+      previewService: product-preview
+      autoPromotionEnabled: {{ .Values.rollout.strategy.autoPromotionEnabled }}
+      autoPromotionSeconds: {{ .Values.rollout.strategy.autoPromotionSeconds }}
+      scaleDownDelaySeconds: {{ .Values.rollout.strategy.scaleDownDelaySeconds }}
