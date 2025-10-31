@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Values.rollout.namespace }}
 spec:
   selector:
-    app: app
+    app: expo
   ports:
     - name: http
       port: {{ .Values.service.port }}

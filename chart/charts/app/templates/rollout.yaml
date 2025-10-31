@@ -3,21 +3,19 @@ kind: Rollout
 metadata:
   name: {{ .Values.rollout.name }}
   namespace: {{ .Values.rollout.namespace }}
-  labels:
-    app.kubernetes.io/name: product
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: product
+      app: expo
   template:
     metadata:
       labels:
-        app: product
+        app: expo
     spec:
       terminationGracePeriodSeconds: {{ .Values.rollout.terminationGracePeriodSeconds}}
       containers:
-        - name: app
+        - name: expo
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
