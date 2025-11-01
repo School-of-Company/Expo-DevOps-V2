@@ -29,107 +29,107 @@ spec:
             timeoutSeconds: 1
             successThreshold: 1
             failureThreshold: 1
-      env:
-        - name: AWS_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: AWS_ACCESS_KEY
-        - name: AWS_S3_IMAGE_BUCKET
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: AWS_S3_IMAGE_BUCKET
-        - name: AWS_S3_QR_BUCKET
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: AWS_S3_QR_BUCKET
-        - name: AWS_SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: AWS_SECRET_KEY
-        - name: AWS_STATIC
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: AWS_STATIC
-        - name: DB_DIALECT
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: DB_DIALECT
-        - name: DB_DRIVER_CLASS
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: DB_DRIVER_CLASS
-        - name: DB_HOST
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: DB_HOST
-        - name: DB_NAME
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: DB_NAME
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: DB_PASSWORD
-        - name: DB_USER
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: DB_USER
-        - name: DISCORD_ERROR_URL
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: DISCORD_ERROR_URL
-        - name: JWT_ACCESS_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: JWT_ACCESS_SECRET
-        - name: JWT_REFRESH_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: JWT_REFRESH_SECRET
-        - name: REDIS_HOST
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: REDIS_HOST
-        - name: REDIS_PORT
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: REDIS_PORT
-        - name: SMS_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: SMS_API_KEY
-        - name: SMS_API_SECRET
-          valueFrom: 
-            secretKeyRef:
-              name: app-external-secrets
-              key: SMS_API_SECRET
-        - name: SMS_FROM_NUMBER
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: SMS_FROM_NUMBER
-        - name: MONGO_URI
-          valueFrom:
-            secretKeyRef:
-              name: app-external-secrets
-              key: MONGO_URI
+          env:
+            - name: AWS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: AWS_ACCESS_KEY
+            - name: AWS_S3_IMAGE_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: AWS_S3_IMAGE_BUCKET
+            - name: AWS_S3_QR_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: AWS_S3_QR_BUCKET
+            - name: AWS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: AWS_SECRET_KEY
+            - name: AWS_STATIC
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: AWS_STATIC
+            - name: DB_DIALECT
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: DB_DIALECT
+            - name: DB_DRIVER_CLASS
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: DB_DRIVER_CLASS
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: DB_HOST
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: DB_NAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: DB_PASSWORD
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: DB_USER
+            - name: DISCORD_ERROR_URL
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: DISCORD_ERROR_URL
+            - name: JWT_ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: JWT_ACCESS_SECRET
+            - name: JWT_REFRESH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: JWT_REFRESH_SECRET
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: REDIS_PORT
+            - name: SMS_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: SMS_API_KEY
+            - name: SMS_API_SECRET
+              valueFrom: 
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: SMS_API_SECRET
+            - name: SMS_FROM_NUMBER
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: SMS_FROM_NUMBER
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: app-external-secrets
+                  key: MONGO_URI
   strategy:
     blueGreen:
       activeService: app-active
@@ -137,3 +137,4 @@ spec:
       autoPromotionEnabled: {{ .Values.rollout.strategy.autoPromotionEnabled }}
       autoPromotionSeconds: {{ .Values.rollout.strategy.autoPromotionSeconds }}
       scaleDownDelaySeconds: {{ .Values.rollout.strategy.scaleDownDelaySeconds }}
+
