@@ -2,7 +2,7 @@ replicaCount: 2
 
 image: 
   repository: 731746339706.dkr.ecr.ap-northeast-2.amazonaws.com/expo-ecr
-  tag: latest
+  tag: test-1
   pullPolicy: IfNotPresent
 
 service:
