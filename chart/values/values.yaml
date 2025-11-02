@@ -8,6 +8,11 @@ image:
 service:
   port: 8080
   targetPort: 8080
+  initialDelaySeconds: 10
+  periodSeconds: 100
+  timeoutSeconds: 10
+  successThreshold: 5
+  failureThreshold: 3
 
 rollout:
   name: expo-rollout
