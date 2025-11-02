@@ -24,11 +24,11 @@ spec:
             httpGet:
               path: /health
               port: {{ .Values.service.targetPort }}
-            initialDelaySeconds: 1
-            periodSeconds: 1
-            timeoutSeconds: 1
-            successThreshold: 1
-            failureThreshold: 1
+            initialDelaySeconds: {{ .Values.service.initialDelaySeconds }}
+            periodSeconds: {{ .Values.service.periodSeconds }}
+            timeoutSeconds: {{ .Values.service.timeoutSeconds }}
+            successThreshold: {{ .Values.service.successThreshold }}
+            failureThreshold: {{ .Values.service.failureThreshold }}
           env:
             - name: AWS_ACCESS_KEY
               valueFrom:
