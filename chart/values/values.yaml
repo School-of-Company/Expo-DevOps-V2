@@ -1,23 +1,26 @@
-replicaCount: 4
-
 image: 
   repository: 731746339706.dkr.ecr.ap-northeast-2.amazonaws.com/expo-ecr
-  tag: expo-20251102080347
+  tag: expo-20251105060724
   pullPolicy: IfNotPresent
 
 service:
+  enabled: true
   port: 8080
   targetPort: 8080
-  initialDelaySeconds: 10
-  periodSeconds: 60
-  timeoutSeconds: 10
-  successThreshold: 3
-  failureThreshold: 2
+  containerPort: 8080
 
 rollout:
+  enabled: true
   name: expo-rollout
   namespace: app
+  replicaCount: 2
   terminationGracePeriodSeconds: 5
+  readinessProbe:
+    initialDelaySeconds: 10
+    periodSeconds: 60
+    timeoutSeconds: 10
+    successThreshold: 3
+    failureThreshold: 2
   strategy:
     blueGreen:
       activeService: app-active
@@ -25,3 +28,97 @@ rollout:
       autoPromotionEnabled: true
       autoPromotionSeconds: 5
       scaleDownDelaySeconds: 5
+      
+
+externalSecrets:
+  enabled: true
+  secrets:
+    - secretKey: AWS_ACCESS_KEY
+      remoteRef:
+        key: expo-secrets
+        property: AWS_ACCESS_KEY
+    - secretKey: AWS_S3_IMAGE_BUCKET
+      remoteRef:
+        key: expo-secrets
+        property: AWS_S3_IMAGE_BUCKET
+    - secretKey: AWS_S3_QR_BUCKET
+      remoteRef:
+        key: expo-secrets
+        property: AWS_S3_QR_BUCKET
+    - secretKey: AWS_SECRET_KEY
+      remoteRef:
+        key: expo-secrets
+        property: AWS_SECRET_KEY
+    - secretKey: AWS_STATIC
+      remoteRef:
+        key: expo-secrets
+        property: AWS_STATIC
+    - secretKey: DB_DIALECT
+      remoteRef:
+        key: expo-secrets
+        property: DB_DIALECT
+    - secretKey: DB_DRIVER_CLASS
+      remoteRef:
+        key: expo-secrets
+        property: DB_DRIVER_CLASS
+    - secretKey: DB_HOST
+      remoteRef:
+        key: expo-secrets
+        property: DB_HOST
+    - secretKey: DB_NAME
+      remoteRef:
+        key: expo-secrets
+        property: DB_NAME
+    - secretKey: DB_PASSWORD
+      remoteRef:
+        key: expo-secrets
+        property: DB_PASSWORD
+    - secretKey: DB_USER
+      remoteRef:
+        key: expo-secrets
+        property: DB_USER
+    - secretKey: DISCORD_ERROR_URL
+      remoteRef:
+        key: expo-secrets
+        property: DISCORD_ERROR_URL
+    - secretKey: JWT_ACCESS_SECRET
+      remoteRef:
+        key: expo-secrets
+        property: JWT_ACCESS_SECRET
+    - secretKey: JWT_REFRESH_SECRET
+      remoteRef:
+        key: expo-secrets
+        property: JWT_REFRESH_SECRET
+    - secretKey: REDIS_HOST
+      remoteRef:
+        key: expo-secrets
+        property: REDIS_HOST
+    - secretKey: REDIS_PORT
+      remoteRef:
+        key: expo-secrets
+        property: REDIS_PORT
+    - secretKey: SMS_API_KEY
+      remoteRef:
+        key: expo-secrets
+        property: SMS_API_KEY
+    - secretKey: SMS_API_SECRET
+      remoteRef:
+        key: expo-secrets
+        property: SMS_API_SECRET
+    - secretKey: SMS_FROM_STANDARD_NUMBER
+      remoteRef:
+        key: expo-secrets
+        property: SMS_FROM_STANDARD_NUMBER
+    - secretKey: SMS_FROM_TRAINEE_NUMBER
+      remoteRef:
+        key: expo-secrets
+        property: SMS_FROM_TRAINEE_NUMBER
+    - secretKey: MONGO_URI
+      remoteRef:
+        key: expo-secrets
+        property: MONGO_URI
+    - secretKey: DISCORD_PARTICIPANT_URL
+      remoteRef:
+        key: expo-secrets
+        property: DISCORD_PARTICIPANT_URL
+        
