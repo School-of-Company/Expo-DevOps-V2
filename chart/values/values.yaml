@@ -28,7 +28,6 @@ rollout:
       autoPromotionEnabled: true
       autoPromotionSeconds: 5
       scaleDownDelaySeconds: 5
-      
 
 externalSecrets:
   name: app-external-secrets
