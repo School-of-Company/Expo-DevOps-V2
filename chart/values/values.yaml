@@ -13,7 +13,7 @@ rollout:
   enabled: true
   name: expo-rollout
   namespace: app
-  replicaCount: 0
+  replicaCount: 1
   terminationGracePeriodSeconds: 5
   readinessProbe:
     initialDelaySeconds: 5
