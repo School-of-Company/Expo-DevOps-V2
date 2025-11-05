@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.rollout.name }}
   namespace: {{ .Values.rollout.namespace }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.rollout.replicaCount }}
   selector:
     matchLabels:
       app: expo
@@ -27,22 +27,23 @@ spec:
               port: {{ .Values.service.targetPort }}
             initialDelaySeconds: {{ .Values.rollout.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.rollout.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.rollout.timeoutSeconds }}
+            timeoutSeconds: {{ .Values.rollout.readinessProbe.timeoutSeconds }}
             successThreshold: {{ .Values.rollout.readinessProbe.successThreshold }}
-            failureThreshold: {{ .Values.rollout.readinessProbefailureThreshold }}
+            failureThreshold: {{ .Values.rollout.readinessProbe.failureThreshold }}
           env:
+          {{- $secretName := .Values.externalSecrets.name }}
           {{- range .Values.externalSecrets.secrets }}
             - name: {{ .secretKey }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ .name }}
+                  name: {{ $secretName }}
                   key: {{ .secretKey }}
           {{- end }}
   strategy:
     blueGreen:
       activeService: app-active
       previewService: app-preview
-      autoPromotionEnabled: {{ .Values.rollout.strategy.autoPromotionEnabled }}
-      autoPromotionSeconds: {{ .Values.rollout.strategy.autoPromotionSeconds }}
-      scaleDownDelaySeconds: {{ .Values.rollout.strategy.scaleDownDelaySeconds }}
+      autoPromotionEnabled: {{ .Values.rollout.strategy.blueGreen.autoPromotionEnabled }}
+      autoPromotionSeconds: {{ .Values.rollout.strategy.blueGreen.autoPromotionSeconds }}
+      scaleDownDelaySeconds: {{ .Values.rollout.strategy.blueGreen.scaleDownDelaySeconds }}
 {{- end }}
