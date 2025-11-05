@@ -27,7 +27,7 @@ spec:
               port: {{ .Values.service.targetPort }}
             initialDelaySeconds: {{ .Values.rollout.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.rollout.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.servie.timeoutSeconds }}
+            timeoutSeconds: {{ .Values.rollout.timeoutSeconds }}
             successThreshold: {{ .Values.rollout.readinessProbe.successThreshold }}
             failureThreshold: {{ .Values.rollout.readinessProbefailureThreshold }}
           env:
