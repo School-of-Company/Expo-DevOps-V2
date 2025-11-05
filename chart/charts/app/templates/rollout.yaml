@@ -35,7 +35,7 @@ spec:
             - name: {{ .secretKey }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.externalSecrets.name }}
+                  name: {{ .name }}
                   key: {{ .secretKey }}
           {{- end }}
   strategy:
