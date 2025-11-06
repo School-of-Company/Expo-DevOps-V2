@@ -30,8 +30,9 @@ rollout:
       scaleDownDelaySeconds: 5
 
 externalSecrets:
-  name: app-external-secrets
   enabled: true
+  name: app-external-secrets
+  refreshInterval: 1m
   secrets:
     - secretKey: AWS_ACCESS_KEY
       remoteRef:
