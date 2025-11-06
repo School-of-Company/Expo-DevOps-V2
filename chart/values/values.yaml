@@ -121,4 +121,8 @@ externalSecrets:
       remoteRef:
         key: expo-secrets
         property: DISCORD_PARTICIPANT_URL
+    - secretKey: MONGO_NAME
+      remoteRef:
+        key: expo-secrets
+        property: MONGO_NAME
         
