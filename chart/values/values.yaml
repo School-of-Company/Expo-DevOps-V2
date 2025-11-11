@@ -32,7 +32,7 @@ rollout:
 externalSecrets:
   enabled: true
   name: app-external-secrets
-  refreshInterval: 1m
+  refreshInterval: 10m
   secrets:
     - secretKey: AWS_ACCESS_KEY
       remoteRef:
