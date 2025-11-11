@@ -21,6 +21,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.containerPort }}
+          volumeMounts:
+            - name: tz-seoul
+              mountPath: /etc/localtime
           readinessProbe:
             httpGet:
               path: /health
@@ -39,6 +42,10 @@ spec:
                   name: {{ $secretName }}
                   key: {{ .secretKey }}
           {{- end }}
+      volumes:
+        - name: tz-seoul
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Seoul
   strategy:
     blueGreen:
       activeService: app-active
