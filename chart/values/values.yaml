@@ -1,6 +1,6 @@
 image: 
   repository: 731746339706.dkr.ecr.ap-northeast-2.amazonaws.com/expo-ecr
-  tag: expo-20251111051604
+  tag: expo-20251111052020
   pullPolicy: IfNotPresent
 
 service:
@@ -126,4 +126,9 @@ externalSecrets:
       remoteRef:
         key: expo-secrets
         property: MONGO_NAME
+    - secretKey: TZ
+      remoteRef:
+        key: expo-secrets
+        property: TZ
+  
         
