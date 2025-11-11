@@ -39,13 +39,6 @@ spec:
                   name: {{ $secretName }}
                   key: {{ .secretKey }}
           {{- end }}
-          volumeMounts:
-            - name: tz-config
-              mountPath: /etc/localtime
-          volumes:
-            - name: tz-config
-              hostPath:
-                path: /usr/share/zoneinfo/Asia/Seoul
   strategy:
     blueGreen:
       activeService: app-active
