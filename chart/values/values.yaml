@@ -1,6 +1,6 @@
 image: 
   repository: 731746339706.dkr.ecr.ap-northeast-2.amazonaws.com/expo-ecr
-  tag: expo-20251111095959
+  tag: expo-20251111104205
   pullPolicy: IfNotPresent
 
 service:
